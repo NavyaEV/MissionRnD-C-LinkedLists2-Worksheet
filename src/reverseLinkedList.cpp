@@ -17,7 +17,24 @@ struct node {
 	int num;
 	struct node *next;
 };
-
+void reverse(struct node **);
 struct node * reverseLinkedList(struct node *head) {
-	return NULL;
+	if (head==nullptr)
+		return NULL;
+	reverse(&head);
+	return head;
+}
+void reverse(struct node **head)
+{
+	struct node *first, *n;
+	if (*head == NULL)
+		return;
+	first = *head;
+	n = first->next;
+	if (n == NULL)
+		return;
+	reverse(&n);
+	first->next->next = first;
+	first->next = NULL;
+	*head = n;
 }
